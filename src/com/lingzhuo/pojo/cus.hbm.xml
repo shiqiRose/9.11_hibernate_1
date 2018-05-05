@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+	
+	
+<hibernate-mapping>
+      <!--建立映射关系 -->
+       <!-- 配置实体与表的映射 -->
+      <class name="com.lingzhuo.entity.CustomerEntity" table="customer" schema="scott">
+            <!-- 描述主键列映射关系 -->
+            <id name="cusno" column="cusno" type="java.lang.Integer"> 
+	        <!-- column对应列明， name对应实体类中属性名区分大小写 -->
+	        <!-- hibernate 操作表，表必须要有主键；
+	             hibernate提供了主键生成策略：
+		            assigned 主键手动添加
+		            sequence使用序列
+		            identity mysql可以使用identity自增
+		            native 自动判断是否自增还是手动添加
+		            uuid 32位长度字符串 
+	         -->
+	         
+	         <generator class="sequence">
+	            <param name="sequence">cus_seq</param>
+			 </generator>
+	      </id>
+	      <property name="cusnames" column="cusnames" type="java.lang.String"></property>
+	      <property name="sal" column="sal" type="java.math.BigDecimal"></property>
+	      <property name="birthday" column="birthday" type="java.sql.Date" scale="15" precision="2"></property>
+      </class>
+</hibernate-mapping>
